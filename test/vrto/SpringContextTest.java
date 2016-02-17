@@ -33,7 +33,7 @@ public class SpringContextTest {
         assertThat(ctx.getBean(UserCommands.class)).isNotNull();
         assertThat(ctx.getBean(UserRepository.class)).isNotNull();
 
-        // writing beans should be missing
+        // reading beans should be missing
         assertThat(ctx.getBean(GetController.class)).isNull();
         assertThat(ctx.getBean(UserQueries.class)).isNull();
     }
