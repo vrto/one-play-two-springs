@@ -26,7 +26,7 @@ public class MasterDbConfig {
     }
 
     @Bean(name = "writingEntityManagerFactory")
-    public EntityManagerFactory readingEntityManagerFactory() {
+    public EntityManagerFactory writingingEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPersistenceUnitName("writingUnit");
@@ -37,7 +37,7 @@ public class MasterDbConfig {
     }
 
     @Bean(name = "writingTransactionManager")
-    public PlatformTransactionManager readingTransactionManager(@Qualifier("writingEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+    public PlatformTransactionManager writingTransactionManager(@Qualifier("writingEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
