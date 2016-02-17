@@ -37,4 +37,11 @@ public class Global extends GlobalSettings {
         return controller != null ? controller : writingContext.getBean(controllerClass);
     }
 
+    @Override
+    public void onStop(Application app) {
+        readingContext.close();
+        writingContext.close();
+        super.onStop(app);
+    }
+
 }
