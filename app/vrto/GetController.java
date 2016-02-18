@@ -27,4 +27,10 @@ public class GetController extends Controller {
         return ok(json);
     }
 
+    public Result writeCrash() {
+        queries.userRepository.save(new UserEntity("Should crash"));
+
+        return status(409, "writing shouldn't be allowed at reading controller");
+    }
+
 }

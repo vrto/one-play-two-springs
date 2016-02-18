@@ -1,2 +1,3 @@
-GET         /read          @vrto.GetController.index()
-POST        /create        @vrto.PostController.modifyingEndpoint()
+GET         /read               @vrto.GetController.index()
+GET         /write-crash        @vrto.GetController.writeCrash()
+POST        /create             @vrto.PostController.modifyingEndpoint()

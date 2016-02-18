@@ -34,6 +34,17 @@ public class EndpointsTest {
     }
 
     @Test
+    public void readEndpoint_ShouldCrash_WhenWriteOpreationIsInvoked() {
+        running(testServer, () -> {
+            WSResponse response = WS.url("http://localhost:9090/write-crash").get().get(timeout);
+            assertThat(response.getStatus()).isEqualTo(500);
+
+            assertThat(response.getBody()).isEqualTo(
+                    "Execution exception[[ReadOnlyDatabaseException: Can't modify data in slave database]]");
+        });
+    }
+
+    @Test
     public void writeEdnpoint_ShouldPointToMasterDatabase() {
         running(testServer, () -> {
             WSResponse response = WS.url("http://localhost:9090/create").post("").get(timeout);

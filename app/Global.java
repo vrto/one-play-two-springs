@@ -2,11 +2,16 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import play.Application;
 import play.GlobalSettings;
+import play.libs.F;
+import play.mvc.Http;
+import play.mvc.Result;
 import vrto.read.ReadConfig;
 import vrto.write.WriteConfig;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
+import static play.mvc.Results.internalServerError;
 
 public class Global extends GlobalSettings {
 
@@ -55,4 +60,8 @@ public class Global extends GlobalSettings {
         super.onStop(app);
     }
 
+    @Override
+    public F.Promise<Result> onError(Http.RequestHeader request, Throwable t) {
+        return F.Promise.promise(() -> internalServerError(t.getMessage()));
+    }
 }
