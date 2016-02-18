@@ -1,5 +1,3 @@
-package global;
-
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import play.Application;
