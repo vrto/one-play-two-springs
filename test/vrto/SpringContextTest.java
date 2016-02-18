@@ -1,7 +1,10 @@
 package vrto;
 
 import lombok.val;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import vrto.read.ReadConfig;
 import vrto.write.WriteConfig;
@@ -9,6 +12,9 @@ import vrto.write.WriteConfig;
 import static org.fest.assertions.Assertions.assertThat;
 
 public class SpringContextTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void shouldCreateReadingBeans() {
@@ -20,8 +26,8 @@ public class SpringContextTest {
         assertThat(ctx.getBean(UserRepository.class)).isNotNull();
 
         // writing beans should be missing
-        assertThat(ctx.getBean(PostController.class)).isNull();
-        assertThat(ctx.getBean(UserCommands.class)).isNull();
+        assertBeanDoesNotExist(ctx, PostController.class);
+        assertBeanDoesNotExist(ctx, UserCommands.class);
     }
 
     @Test
@@ -34,8 +40,8 @@ public class SpringContextTest {
         assertThat(ctx.getBean(UserRepository.class)).isNotNull();
 
         // reading beans should be missing
-        assertThat(ctx.getBean(GetController.class)).isNull();
-        assertThat(ctx.getBean(UserQueries.class)).isNull();
+        assertBeanDoesNotExist(ctx, GetController.class);
+        assertBeanDoesNotExist(ctx, UserQueries.class);
     }
 
     @Test
@@ -44,5 +50,12 @@ public class SpringContextTest {
         val writingCtx = new AnnotationConfigApplicationContext(WriteConfig.class);
 
         assertThat(readingCtx.getBean(UserRepository.class)).isNotSameAs(writingCtx.getBean(UserRepository.class));
+    }
+
+    private void assertBeanDoesNotExist(AnnotationConfigApplicationContext ctx, Class<?> beanClass) {
+        thrown.expect(NoSuchBeanDefinitionException.class);
+        thrown.expectMessage(String.format("No qualifying bean of type [%s] is defined", beanClass.getName()));
+
+        ctx.getBean(beanClass);
     }
 }

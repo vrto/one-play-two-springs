@@ -14,8 +14,10 @@
   -->
   <logger name="play" level="INFO" />
   <logger name="application" level="DEBUG" />
+  <logger name="org.hibernate" level="INFO" />
+  <logger name="org.springframework" level="TRACE" />
 
-  <root level="ERROR">
+  <root level="TRACE">
     <appender-ref ref="STDOUT" />
   </root>
 

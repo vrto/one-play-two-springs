@@ -4,6 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
+import vrto.read.ReadConfig;
 import vrto.stereotypes.Queries;
 import vrto.stereotypes.ReadingController;
 
@@ -11,9 +12,9 @@ import vrto.stereotypes.ReadingController;
 @Import(MasterDbConfig.class)
 @ComponentScan(
         basePackages = {"vrto"},
-//        excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Queries.class, ReadingController.class})}
-        excludeFilters = {@ComponentScan.Filter(value = {Queries.class, ReadingController.class})}
-//        excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Queries"), @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*GetController")}
+        excludeFilters = {
+                @ComponentScan.Filter(value = {Queries.class, ReadingController.class}),
+                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = ReadConfig.class)}
 )
 public class WriteConfig {
 }

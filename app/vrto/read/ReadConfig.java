@@ -6,14 +6,15 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import vrto.stereotypes.Commands;
 import vrto.stereotypes.WritingController;
+import vrto.write.WriteConfig;
 
 @Configuration
 @Import(SlaveDbConfig.class)
 @ComponentScan(
         basePackages = {"vrto"},
-//        excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Commands.class, WritingController.class})}
-        excludeFilters = {@ComponentScan.Filter(value = {Commands.class, WritingController.class})}
-//        excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*Commands"), @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*PostController")}
+        excludeFilters = {
+                @ComponentScan.Filter(value = {Commands.class, WritingController.class}),
+                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = WriteConfig.class)}
 )
 public class ReadConfig {
 }
