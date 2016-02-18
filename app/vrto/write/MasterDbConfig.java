@@ -22,7 +22,7 @@ public class MasterDbConfig {
 
     @Bean(name = "writingDataSource")
     public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("sample-db-write.sql").build();
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).setName("users-master").addScript("sample-db-write.sql").build();
     }
 
     @Bean(name = "writingEntityManagerFactory")

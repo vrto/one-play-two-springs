@@ -22,7 +22,7 @@ public class SlaveDbConfig {
 
     @Bean(name = "readingDataSource")
     public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("sample-db-read.sql").build();
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).setName("users-slave").addScript("sample-db-read.sql").build();
     }
 
     @Bean(name = "readingEntityManagerFactory")

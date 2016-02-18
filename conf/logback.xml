@@ -15,9 +15,9 @@
   <logger name="play" level="INFO" />
   <logger name="application" level="DEBUG" />
   <logger name="org.hibernate" level="INFO" />
-  <logger name="org.springframework" level="TRACE" />
+  <logger name="org.springframework" level="INFO" />
 
-  <root level="TRACE">
+  <root level="INFO">
     <appender-ref ref="STDOUT" />
   </root>
 

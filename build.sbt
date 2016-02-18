@@ -18,5 +18,6 @@ libraryDependencies ++= Seq(
   "org.hibernate" % "hibernate-entitymanager" % "4.3.9.Final",
   "org.springframework" % "spring-context" % "4.1.6.RELEASE",
   "org.springframework.data" % "spring-data-jpa" % "1.9.2.RELEASE",
-  "org.projectlombok" % "lombok" % "1.16.6"
+  "org.projectlombok" % "lombok" % "1.16.6",
+  "javax.inject" % "javax.inject" % "1"
 )
