@@ -24,7 +24,7 @@ public class SpringContextTest {
         assertThat(ctx.getBean(GetController.class)).isNotNull();
         assertThat(ctx.getBean(UserQueries.class)).isNotNull();
         assertThat(ctx.getBean(UserRepository.class)).isNotNull();
-        assertThat(ctx.getBean("writingEntityManagerFactory")).isNotNull();
+        assertThat(ctx.getBean("readingEntityManagerFactory")).isNotNull();
         assertThat(ctx.getBean("readingDataSource")).isNotNull();
         assertThat(ctx.getBean("readingTransactionManager")).isNotNull();
 

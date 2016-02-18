@@ -1,7 +1,7 @@
 drop table if EXISTS users;
 
 CREATE TABLE users (
-  id   INTEGER PRIMARY KEY,
+  id   INTEGER PRIMARY KEY auto_increment,
   name VARCHAR(30)
 );
 

@@ -1,9 +1,6 @@
 package vrto.read;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 import vrto.stereotypes.Commands;
 import vrto.stereotypes.WritingController;
 import vrto.write.MasterDbConfig;
@@ -17,5 +14,12 @@ import vrto.write.WriteConfig;
                 @ComponentScan.Filter(value = {Commands.class, WritingController.class}),
                 @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = {WriteConfig.class, MasterDbConfig.class})}
 )
+@EnableAspectJAutoProxy
 public class ReadConfig {
+
+    @Bean
+    public SlaveDatabaseGuardian slaveDatabaseGuardian() {
+        return new SlaveDatabaseGuardian();
+    }
+
 }
